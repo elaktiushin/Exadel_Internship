@@ -1,0 +1,11 @@
+commit 3a8028285152336339936d056ab028a34076a718
+Author: elaktiushin <elaktiushin@exadel.com>
+Date:   Tue Jun 8 22:45:28 2021 +0500
+
+    "add ./task1/status.txt"
+
+commit 920586a2a90720ea7e4b7904dd8b05ec4088f5de
+Author: elaktiushin <elaktiushin@exadel.com>
+Date:   Tue Jun 8 22:42:34 2021 +0500
+
+    “add .gitignore”
