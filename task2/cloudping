@@ -1,0 +1,24 @@
+Region 	                    Latency
+US-East (Virginia) 	        163 ms
+US East (Ohio) 	            158 ms
+US-West (California) 	    208 ms
+US-West (Oregon) 	        41780 ms
+Canada (Central) 	        155 ms
+Europe (Ireland) 	        434 ms
+Europe (London) 	        74 ms
+Europe (Frankfurt) 	        66 ms
+Europe (Paris) 	            72 ms
+Europe (Stockholm) 	        47 ms
+Middle East (Bahrain) 	    190 ms
+Asia Pacific (Hong Kong) 	293 ms
+Asia Pacific (Mumbai) 	    197 ms
+Asia Pacific (Osaka-Local) 	206 ms
+Asia Pacific (Seoul) 	    246 ms
+Asia Pacific (Singapore) 	201 ms
+Asia Pacific (Sydney) 	    292 ms
+Asia Pacific (Tokyo) 	    223 ms
+South America (São Paulo) 	262 ms
+China (Beijing) 	        295 ms
+China (Ningxia) 	        255 ms
+AWS GovCloud (US-East) 	    170 ms
+AWS GovCloud (US) 	        227 ms
