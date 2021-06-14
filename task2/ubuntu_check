@@ -1,0 +1,26 @@
+ubuntu@ip-172-31-8-133:~$ curl http://13.53.140.19/
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello World</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Hello World</h1>
+<p><em>NAME="Amazon Linux"</em></p>
+<p><em>VERSION="2"</em></p>
+<p><em>ID="amzn"</em></p>
+<p><em>ID_LIKE="centos rhel fedora"</em></p>
+<p><em>VERSION_ID="2"</em></p>
+<p><em>PRETTY_NAME="Amazon Linux 2"</em></p>
+<p><em>ANSI_COLOR="0;33"</em></p>
+<p><em>CPE_NAME="cpe:2.3:o:amazon:amazon_linux:2"</em></p>
+<p><em>HOME_URL="https://amazonlinux.com/"</em></p>
+</body>
+</html>
