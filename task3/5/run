@@ -1,1 +1,10 @@
 docker-compose up --scale mydocker=5 -d
+Creating network "5_default" with the default driver
+WARNING: The "mydocker" service specifies a port on the host. If multiple containers for this service are created on a single host, the port will clash.
+Creating 5_database_1 ... done
+Creating 5_mydocker_1 ... done
+Creating 5_mydocker_2 ... done
+Creating 5_mydocker_3 ... done
+Creating 5_mydocker_4 ... done
+Creating 5_mydocker_5 ... done
+Creating 5_javaapp_1  ... done
