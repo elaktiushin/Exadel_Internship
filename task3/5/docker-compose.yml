@@ -1,0 +1,17 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  mydocker:
+    image: elaktiushin/task4:0.1
+    ports:
+      - "8100-8200:80"
+  javaapp:
+    image: markmnei/hello-world-java
+    depends_on:
+      - "database"
+  database:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: p@ssw0rd

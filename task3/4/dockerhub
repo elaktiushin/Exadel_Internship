@@ -1,0 +1,7 @@
+docker pull elaktiushin/task4:0.1
+0.1: Pulling from elaktiushin/task4
+Digest: sha256:c8e5ddff335a56578902e7b4acb9036b50ce5b90a7851720a152920c43e242c9
+Status: Image is up to date for elaktiushin/task4:0.1
+docker.io/elaktiushin/task4:0.1
+
+https://hub.docker.com/r/elaktiushin/task4

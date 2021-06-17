@@ -1,0 +1,3 @@
+sudo docker run -p 8080:80 -d dockerbogo/docker-nginx-hello-world
+#test
+docker exec -it 39a770bee062 /bin/sh
