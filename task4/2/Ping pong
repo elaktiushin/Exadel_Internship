@@ -1,0 +1,38 @@
+cat /etc/ansible/hosts
+[ubuntu]
+ip-172-31-8-133.eu-north-1.compute.internal
+ip-10-0-0-36.eu-north-1.compute.internal
+
+ansible ip-172-31-8-133.eu-north-1.compute.internal -m ping -u ubuntu
+ip-172-31-8-133.eu-north-1.compute.internal | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+
+ansible ip-10-0-0-36.eu-north-1.compute.internal -m ping -u ubuntu
+ip-10-0-0-36.eu-north-1.compute.internal | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+
+ansible ubuntu -m ping -u ubuntu
+ip-10-0-0-36.eu-north-1.compute.internal | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+ip-172-31-8-133.eu-north-1.compute.internal | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
