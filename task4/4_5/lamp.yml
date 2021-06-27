@@ -1,0 +1,35 @@
+---
+- hosts: ubuntu
+  become: true
+  vars_files:
+   - vars/vars.yaml
+  tasks:
+    - name: Install container httpd
+      docker_container:
+        name: apache
+        image: httpd
+        ports: ['8080:80']
+
+    - name: Install container mysql
+      docker_container:
+        name: mysql
+        image: mysql
+        ports: ['3306:3306']
+        hostname: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: "{{ mysql_root_password }}"
+          MYSQL_USER: "{{ mysql_user }}"
+          MYSQL_PASSWORD: "{{ mysql_password }}"
+          MYSQL_DATABASE: TEST
+
+    - name: Install container phpmyadmin
+      docker_container:
+        name: phpmyadmin
+        image: phpmyadmin
+        ports: ['8090:80']
+        env:
+          PMA_HOST: "127.0.0.1"
+          PMA_USER: root
+          PMA_PASSWORD: "{{ mysql_root_password }}"
+     
+     
