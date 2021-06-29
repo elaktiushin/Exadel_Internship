@@ -1,0 +1,31 @@
+node {
+  stage('Jenkins Credentials | Decrypt Secret Text String') {
+    withCredentials([string(credentialsId: 'pass',
+                            variable: 'secretText')]) {
+      secretstring = "${secretText}"
+    }
+    println secretstring
+  }
+}
+
+
+pipeline {
+    agent {
+    label 'ec2_amazon_linux'
+    }        
+ 
+stages {
+
+    stage('run container with env') {
+        steps {
+                sh ("docker run -it -d -p 8080:80 -e password=123  elaktiushin")
+            } 
+       }       
+               
+        stage('show vars on host') {
+            steps {
+            sh ("docker ps")
+            }    
+        }
+    }
+}

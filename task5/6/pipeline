@@ -1,0 +1,25 @@
+pipeline {
+    agent {
+    label 'ec2_amazon_linux'
+    }        
+    stages {
+        stage('get repo') {
+            steps {
+             git branch: 'master', url: "https://github.com/elaktiushin/Exadel_Internship.git"
+            }    
+        }        
+        stage('create docker image') {
+            steps {
+            sh '''cd task3/3/3_2_1/
+            docker image build -t elaktiushin -f dockerfile .
+            '''
+            }    
+        }
+        stage('run docker container') {
+            steps {
+               sh("docker images")
+            }
+        }
+    }
+}
+

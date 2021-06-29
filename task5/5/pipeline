@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+    stages {
+        stage('stage1') {
+            agent {
+                label 'ec2_amazon_linux'
+            }
+            steps {
+                sh("docker ps -a")
+            }
+        }
+    }
+}

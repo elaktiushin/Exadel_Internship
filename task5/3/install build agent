@@ -1,0 +1,15 @@
+sudo yum update -y
+sudo amazon-linux-extras install docker
+sudo yum install docker
+sudo service docker restart
+sudo usermod -a -G docker ec2-user
+docker run -d --rm --name=agent1 -p 122:22 -e "JENKINS_AGENT_SSH_PUBKEY=[ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC9so4dP72EXaow9a5QywFUqERfVGN9WBr/0JUGzPc1fhEsDgkSGXL2h2lspkODlCPuo1P0nwgd+qquAMKwydzFkVq05H2ZdI4b6CKb3zixpBcXkkb/2K6ncS0HILMoGt1kO+ZMhdVgM9JoiP31PqW+6rUxY+GtPSpEelgRAvM4EuIDzBnDwzIyoU7zEZ1lVKqUWpIpKkS/g5v0T/wjJpnfu+VXm9tW3elt2UOSwLeAUEh9IGMUz0Mfnk2mabGj6t0P41tkDycMBjdvTUVd07kc4BmRBJoADBa+JmLE3fTT1W2mjCEpPaj607JR7WOK1w7AyJOFgI4KjK4H/jCL3iyk9mjmeN8wplNDIXTPTwGWmJuwyeFN4VtDmJ7qDDtJvmBOTgQ6MzXz6etghQDQUcxbbnFojGiu+Op0zFS28doA+QpOtz+WR6WJmPZbNjPpWcVvSYnO2d6km2bVgCLhGcwTjvhEmG6H0yGr0OiVsrjj3hU8xkRwV4/P8JYNs2r8haM= elaktiushin@probook]" jenkins/ssh-agent:alpine
+
+docker run -d --rm --name=agent1 -p 122:22 \
+-e "JENKINS_AGENT_SSH_PUBKEY=[ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC9so4dP72EXaow9a5QywFUqERfVGN9WBr/0JUGzPc1fhEsDgkSGXL2h2lspkODlCPuo1P0nwgd+qquAMKwydzFkVq05H2ZdI4b6CKb3zixpBcXkkb/2K6ncS0HILMoGt1kO+ZMhdVgM9JoiP31PqW+6rUxY+GtPSpEelgRAvM4EuIDzBnDwzIyoU7zEZ1lVKqUWpIpKkS/g5v0T/wjJpnfu+VXm9tW3elt2UOSwLeAUEh9IGMUz0Mfnk2mabGj6t0P41tkDycMBjdvTUVd07kc4BmRBJoADBa+JmLE3fTT1W2mjCEpPaj607JR7WOK1w7AyJOFgI4KjK4H/jCL3iyk9mjmeN8wplNDIXTPTwGWmJuwyeFN4VtDmJ7qDDtJvmBOTgQ6MzXz6etghQDQUcxbbnFojGiu+Op0zFS28doA+QpOtz+WR6WJmPZbNjPpWcVvSYnO2d6km2bVgCLhGcwTjvhEmG6H0yGr0OiVsrjj3hU8xkRwV4/P8JYNs2r8haM= elaktiushin@probook]" \
+jenkins/ssh-agent:alpine
+
+VARS1="HOME=/home/jenkins|USER=jenkins|MAIL=|LC_ALL=|LS_COLORS=|LANG="
+VARS2="HOSTNAME=|PWD=|TERM=|SHLVL=|LANGUAGE=|_="
+VARS="${VARS1}|${VARS2}"
+docker exec agent1 sh -c "env | egrep -v '^(${VARS})' >> /etc/environment"
