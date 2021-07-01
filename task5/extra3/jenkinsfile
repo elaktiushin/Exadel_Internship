@@ -1,0 +1,25 @@
+pipeline {
+    agent {
+    label 'ec2_amazon_linux'
+    }        
+    stages {
+
+        stage('get repo') {
+            steps {
+             git branch: 'master', url: "https://github.com/elaktiushin/Exadel_Internship.git"
+            }    
+        }
+
+        stage('run container from git image on another host') {
+        steps {
+            withCredentials([string(credentialsId: 'pass', variable: 'secretText')]) {
+                sh '''
+                scp -i /home/ec2-user/.ssh/id_rsa /home/ec2-user/jenkins/workspace/extra1/task3/3/3_2_1/dockerfile  ubuntu@ip-172-31-13-217.eu-north-1.compute.internal:/home/ubuntu/dockerfile
+                ssh -i /home/ec2-user/.ssh/id_rsa ubuntu@ip-172-31-13-217.eu-north-1.compute.internal 'docker image build -t elaktiushin -f dockerfile .'
+                ssh -i /home/ec2-user/.ssh/id_rsa ubuntu@ip-172-31-13-217.eu-north-1.compute.internal 'docker run -it -d -p 8081:80  elaktiushin'
+            '''
+            }              
+        } 
+    }
+} 
+}      
