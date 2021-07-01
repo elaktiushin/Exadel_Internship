@@ -4,22 +4,42 @@ pipeline {
     }        
     stages {
 
-        stage('get repo') {
+        stage('run docker registry') {
+          steps {
+                sh '''
+               docker run -d -p 5000:5000 --name registry registry:2
+           '''   
+            }
+       }        
+        stage('download docker image') {
             steps {
-             git branch: 'master', url: "https://github.com/elaktiushin/Exadel_Internship.git"
+                sh '''
+                docker pull alpine:latest
+            '''   
             }    
         }
-
-        stage('run container from git image on another host') {
-        steps {
-            withCredentials([string(credentialsId: 'pass', variable: 'secretText')]) {
+        stage('image to local registry') {
+            steps {
                 sh '''
-                scp -i /home/ec2-user/.ssh/id_rsa /home/ec2-user/jenkins/workspace/extra1/task3/3/3_2_1/dockerfile  ubuntu@ip-172-31-13-217.eu-north-1.compute.internal:/home/ubuntu/dockerfile
-                ssh -i /home/ec2-user/.ssh/id_rsa ubuntu@ip-172-31-13-217.eu-north-1.compute.internal 'docker image build -t elaktiushin -f dockerfile .'
-                ssh -i /home/ec2-user/.ssh/id_rsa ubuntu@ip-172-31-13-217.eu-north-1.compute.internal 'docker run -it -d -p 8081:80  elaktiushin'
-            '''
-            }              
-        } 
-    }
-} 
+                 docker image tag alpine localhost:5000/alpine
+                 docker push localhost:5000/alpine
+            '''   
+            }    
+        }
+        stage('pull docker image from local registry') {
+            steps {
+                sh '''
+                docker pull localhost:5000/alpine
+                docker images
+            '''   
+            }    
+        }
+        stage('run docker container from local registry') {
+            steps {
+                sh '''
+               docker run -d --restart=always localhost:5000/alpine
+            '''   
+            }    
+        }
+    } 
 }      
