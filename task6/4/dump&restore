@@ -1,0 +1,3 @@
+mysqldump -u root -p -h 127.0.0.1 --single-transaction TEST | nice -n 10 gzip > TEST`date +%F`.sql.gz
+
+zcat TEST2021-07-05.sql.gz | mysql -u root -p -h 127.0.0.1 TEST
